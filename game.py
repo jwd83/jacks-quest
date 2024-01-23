@@ -2,6 +2,7 @@ import os
 import pygame
 from scene import Scene
 from scenes.empty import Empty
+from scenes.logo import Logo
 from scenes.title import Title
 
 
@@ -16,7 +17,9 @@ class Game:
         pygame.init()
 
         # create a window
-        self.screen = pygame.display.set_mode((320, 180))
+        self.screen = pygame.display.set_mode(
+            (320, 180), pygame.FULLSCREEN | pygame.SCALED
+        )
         pygame.display.set_caption("Jack's Quest")
 
         # create a pygame clock to limit the game to 60 fps
@@ -25,8 +28,8 @@ class Game:
         # create a stack for scenes to be updated and drawn
         # and add the title scene to the stack
         self.scene = []  # type: list[Scene]
-        self.scene_list = ["Title"]
-        self.scene.append(Title(self))
+        self.scenes = ["Logo", "Title"]
+        self.scene.append(Logo(self))
 
         # create variables to handle scene changes
         self.scene_replace = None
@@ -72,13 +75,13 @@ class Game:
     def change_scenes(self):
         # check for scene changes
         if self.scene_replace is not None:
-            if self.scene_replace in self.scene_list:
+            if self.scene_replace in self.scenes:
                 self.scene = []
                 self.scene.append(self.load_scene(self.scene_replace))
             self.scene_replace = None
 
         elif self.scene_push is not None:
-            if self.scene_push in self.scene_list:
+            if self.scene_push in self.scenes:
                 self.scene.append(self.load_scene(self.scene_push))
             self.scene_push = None
 
@@ -91,7 +94,7 @@ class Game:
             self.scene_pop = None
 
     def load_scene(self, scene: str):
-        if scene in self.scene_list:
+        if scene in self.scenes:
             # use an eval to return the scene based on the scene string
             return eval(scene + "(self)")
         else:

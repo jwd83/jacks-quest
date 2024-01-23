@@ -12,6 +12,9 @@ class Scene:
     def elapsed(self):
         return time.time() - self.start
 
+    def constrain(self, n, n_min, n_max):
+        return max(min(n_max, n), n_min)
+
     def update(self):
         print("Scene's update method has not been implemented")
 

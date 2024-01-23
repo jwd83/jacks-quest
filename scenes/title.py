@@ -5,11 +5,11 @@ from scene import Scene
 class Title(Scene):
     def __init__(self, game):
         super().__init__(game)
-        self.title_image = self.game.load_asset("dragon-title-180p.png")
+        self.title_image = self.game.load_asset("jacks-quest-title-screen.png")
         # draw a black fade in over the title
         self.fade = pygame.Surface((320, 180))
         self.fade.fill((0, 0, 0))
-        self.fade_delay = 0.5
+        self.fade_delay = 0
         self.fade_speed = 400
 
     def update(self):
