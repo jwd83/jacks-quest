@@ -21,14 +21,16 @@ class Logo(Scene):
         self.screen.fill((0, 0, 0))
         self.screen.blit(self.title_image, (0, 0))
 
-        # fade in
+        # wait to start the fade in from pure black
         if self.elapsed() > self.fade_delay:
+            # calculate the fade in
             self.fade.set_alpha(
                 255 - min((self.elapsed() - self.fade_delay) * self.fade_speed, 255)
             )
 
-        # fade out
+        # start the fade out so it ends at the same time as the timeout of this scene
         if self.elapsed() > self.timeout - 255 / self.fade_speed:
+            # calculate the fade out
             self.fade.set_alpha(
                 self.constrain(
                     255
