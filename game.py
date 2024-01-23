@@ -1,5 +1,6 @@
 import pygame
 from scene import Scene
+from scenes.empty import Empty
 from scenes.title import Title
 
 
@@ -16,19 +17,21 @@ class Game:
         self.clock = pygame.time.Clock()
 
         # create a stack for scenes to be updated and drawn
-        self.scene = []
+        self.scene = []  # type: list[Scene]
+
+        self.scene_replace = None
+        self.scene_push = None
+        self.scene_pop = None
+
+        self.scene_list = ["Title"]
 
         # add the title scene to the stack
         self.scene.append(Title(self))
 
     def run(self):
         while not self.quit:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.quit = True
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        self.quit = True
+            # handle events and input
+            self.process_events()
 
             # process update for the top scene in the stack
             self.scene[-1].update()
@@ -37,11 +40,50 @@ class Game:
             for scene in self.scene:
                 scene.draw()
 
+            # process scene change requests (if any)
+            self.change_scenes()
+
             # update the display
             pygame.display.flip()
 
             # limit the game to 60 fps
             self.clock.tick(60)
 
+    def process_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.quit = True
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.quit = True
+
     def load_asset(self, asset_path: str):
         return pygame.image.load("assets/" + asset_path).convert_alpha()
+
+    def change_scenes(self):
+        # check for scene changes
+        if self.scene_replace is not None:
+            if self.scene_replace in self.scene_list:
+                self.scene = []
+                self.scene.append(self.load_scene(self.scene_replace))
+            self.scene_replace = None
+
+        elif self.scene_push is not None:
+            if self.scene_push in self.scene_list:
+                self.scene.append(self.load_scene(self.scene_push))
+            self.scene_push = None
+
+        elif self.scene_pop is not None:
+            if len(self.scene) > 1:
+                self.scene.pop()
+            else:
+                print("WARNING: Cannot pop last scene! Exiting!")
+                self.quit = True
+            self.scene_pop = None
+
+    def load_scene(self, scene: str):
+        if scene in self.scene_list:
+            # use an eval to return the scene based on the scene string
+            return eval(scene + "(self)")
+        else:
+            return Title(self)

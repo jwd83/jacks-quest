@@ -10,10 +10,12 @@ class Title(Scene):
         self.fade = pygame.Surface((320, 180))
         self.fade.fill((0, 0, 0))
         self.fade_delay = 0.5
-        self.fade_speed = 100
+        self.fade_speed = 400
 
     def update(self):
-        pass
+        if self.elapsed() > 5:
+            print("popping time")
+            self.game.scene_pop = True
 
     def draw(self):
         self.screen.fill((0, 0, 0))
