@@ -25,6 +25,8 @@ class Title(Scene):
     def draw(self):
         self.screen.fill((0, 0, 0))
         self.screen.blit(self.title_image, (0, 0))
+
+        # fade the press start text in and out
         self.text_press_start.set_alpha(
             self.constrain(127 + math.sin(self.elapsed() * 2) * 128, 0, 255)
         )
