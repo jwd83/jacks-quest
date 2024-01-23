@@ -9,6 +9,8 @@ class Game:
     def __init__(self):
         # set the quit flag to false at the start
         self.quit = False
+        self.pressed = []
+        self.just_pressed = []
 
         # initialize pygame
         pygame.init()
@@ -34,7 +36,7 @@ class Game:
     def run(self):
         while not self.quit:
             # handle events and input
-            self.process_events()
+            self.get_events_and_input()
 
             # process update for the top scene in the stack
             self.scene[-1].update()
@@ -52,9 +54,12 @@ class Game:
             # limit the game to 60 fps
             self.clock.tick(60)
 
-    def process_events(self):
+    def get_events_and_input(self):
+        # get input
         self.pressed = pygame.key.get_pressed()
         self.just_pressed = []
+
+        # get events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.quit = True
