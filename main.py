@@ -1,10 +1,10 @@
-import game
+from game import Game
 
 
 # main() is the entry point of the game
 def main():
     # create a new game and run it
-    game.Game().run()
+    Game().run()
 
 
 # if started directly, run main()
