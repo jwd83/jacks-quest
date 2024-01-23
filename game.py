@@ -69,6 +69,10 @@ class Game:
             elif event.type == pygame.KEYDOWN:
                 self.just_pressed.append(event.key)
 
+        # check for escape key to quit
+        if pygame.K_ESCAPE in self.just_pressed:
+            self.quit = True
+
     def load_asset(self, asset_path: str):
         return pygame.image.load("assets/" + asset_path).convert_alpha()
 
@@ -115,3 +119,32 @@ class Game:
             print(f"Cannot load image: {fullname}")
             raise SystemExit
         return image, image.get_rect()
+
+    def make_text(self, text, color, fontSize, font=None):
+        return pygame.font.Font(font, fontSize).render(text, 1, color)
+
+    def place_text_absolute(self, text, target, position):
+        target.blit(text, position)
+
+    def place_text_centered(self, text, target, position):
+        """
+        This function places a given text at a specified position on the target surface.
+
+        Parameters:
+        text (pygame.Surface): The text to be placed. This is a pygame Surface object, which can be
+        created using pygame.font.Font.render() method.
+
+        target (pygame.Surface): The target surface on which the text is to be placed. This could be
+        the game screen or any other surface.
+
+        position (tuple): A tuple of two values between 0 and 2, representing the relative position
+        on the target surface where the text should be placed. The values correspond to the horizontal
+        and vertical position respectively. For example, a position of (1, 1) will place the text dead
+        center on the target surface.
+
+
+        """
+        text_position = text.get_rect()
+        text_position.centerx = target.get_rect().centerx * position[0]
+        text_position.centery = target.get_rect().centery * position[1]
+        target.blit(text, text_position)
