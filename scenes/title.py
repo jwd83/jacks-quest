@@ -25,7 +25,9 @@ class Title(Scene):
     def draw(self):
         self.screen.fill((0, 0, 0))
         self.screen.blit(self.title_image, (0, 0))
-        self.text_press_start.set_alpha(180 + math.sin(self.elapsed() * 2) * 60)
+        self.text_press_start.set_alpha(
+            self.constrain(127 + math.sin(self.elapsed() * 2) * 128, 0, 255)
+        )
         self.game.place_text_centered(self.text_press_start, self.screen, (1, 1.5))
 
         # wait to start the fade in from pure black
