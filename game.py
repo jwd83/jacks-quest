@@ -4,6 +4,7 @@ from scene import Scene
 from scenes.empty import Empty
 from scenes.logo import Logo
 from scenes.title import Title
+from scenes.mainmenu import MainMenu
 
 
 class Game:
@@ -28,7 +29,7 @@ class Game:
         # create a stack for scenes to be updated and drawn
         # and add the title scene to the stack
         self.scene = []  # type: list[Scene]
-        self.scenes = ["Logo", "Title"]
+        self.scenes = ["Logo", "Title", "MainMenu"]
         self.scene.append(Logo(self))
 
         # create variables to handle scene changes

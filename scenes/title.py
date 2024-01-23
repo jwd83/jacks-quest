@@ -16,11 +16,12 @@ class Title(Scene):
         self.text_press_start = self.game.make_text(
             text="Press Start",
             color="WHITE",
-            fontSize=64,
+            fontSize=40,
         )
 
     def update(self):
-        pass
+        if pygame.K_RETURN in self.game.just_pressed:
+            self.game.scene_push = "MainMenu"
 
     def draw(self):
         self.screen.fill((0, 0, 0))
