@@ -1,6 +1,13 @@
-click.wav: generated in jsfxr by Jared De Blander
-dragon-title-180p.png: generated in stable diffusion + photoshop by Jared De Blander
-dragon-title-360p.png: generated in stable diffusion + photoshop by Jared De Blander
-jacks-quest-title-screen: mspaint + photoshop by Jared De Blander
-hand.png: drawn in aseprite by Jared De Blander
+Third party assets used in Jack's Quest
+
 PressStart2P.ttf: Freely provided by codeman38
+
+Jared De Blander: All other assets
+
+click.wav: generated in jsfxr by Jared De Blander
+cursor.png: drawn in aseprite by Jared De Blander
+dragon-title-180p.png: generated in stable diffusion and photoshop by Jared De Blander
+dragon-title-360p.png: generated in stable diffusion and photoshop by Jared De Blander
+jacks-quest-title-screen: mspaint and photoshop by Jared De Blander
+hand.png: drawn in aseprite by Jared De Blander
+hand-16x8.png: drawn in aseprite by Jared De Blander

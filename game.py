@@ -116,7 +116,7 @@ class Game:
     # https://www.pygame.org/docs/tut/tom_games3.html
     def load_png(self, name):
         """Load image and return image object"""
-        fullname = os.path.join("data", name)
+        fullname = os.path.join("assets", name)
         try:
             image = pygame.image.load(fullname)
             if image.get_alpha() is None:
@@ -161,5 +161,4 @@ class Game:
         target.blit(surface, surface_position)
 
     def play_sound(self, sound):
-        print("Playing sound: " + sound)
         pygame.mixer.Sound.play(self.__sfx[sound])

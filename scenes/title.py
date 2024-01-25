@@ -6,7 +6,7 @@ from scene import Scene
 class Title(Scene):
     def __init__(self, game):
         super().__init__(game)
-        self.title_image = self.game.load_asset("jacks-quest-title-screen.png")
+        self.img_title = self.game.load_asset("jacks-quest-title-screen.png")
         # draw a black fade in over the title
         self.fade = pygame.Surface((320, 180))
         self.fade.fill((0, 0, 0))
@@ -25,7 +25,7 @@ class Title(Scene):
 
     def draw(self):
         self.screen.fill((0, 0, 0))
-        self.screen.blit(self.title_image, (0, 0))
+        self.screen.blit(self.img_title, (0, 0))
 
         # fade the press start text in and out
         self.text_press_start.set_alpha(

@@ -5,7 +5,7 @@ from scene import Scene
 class Logo(Scene):
     def __init__(self, game):
         super().__init__(game)
-        self.title_image = self.game.load_asset("dragon-title-180p.png")
+        self.img_title = self.game.load_asset("dragon-title-180p.png")
         # draw a black fade in over the title
         self.fade = pygame.Surface((320, 180))
         self.fade.fill((0, 0, 0))
@@ -25,7 +25,7 @@ class Logo(Scene):
 
     def draw(self):
         self.screen.fill((0, 0, 0))
-        self.screen.blit(self.title_image, (0, 0))
+        self.screen.blit(self.img_title, (0, 0))
 
         # wait to start the fade in from pure black
         if self.elapsed() > self.fade_delay:
