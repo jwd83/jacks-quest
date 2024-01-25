@@ -7,3 +7,4 @@ TITLE = "Jack's Quest"
 SCENE_LIST = ["Logo", "Title", "MainMenu"]
 SCENE_START = "Logo"
 SFX_LIST = ["click.wav"]
+FONT = "PressStart2P.ttf"

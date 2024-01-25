@@ -16,7 +16,7 @@ class Title(Scene):
         self.text_press_start = self.game.make_text(
             text="Press Enter",
             color="WHITE",
-            fontSize=40,
+            fontSize=24,
         )
 
     def update(self):

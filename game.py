@@ -129,6 +129,9 @@ class Game:
         return image, image.get_rect()
 
     def make_text(self, text, color, fontSize, font=None):
+        if font is None:
+            font = "assets/" + settings.FONT
+
         return pygame.font.Font(font, fontSize).render(text, 1, color)
 
     def make_transparent_surface(self, size):

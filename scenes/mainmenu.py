@@ -7,6 +7,7 @@ class MainMenu(Scene):
         super().__init__(game)
         self.box_delay = 0.18
         self.delay_complete = False
+        self.text_new_game = self.game.make_text("New Game", "WHITE", 8)
 
     def update(self):
         if self.delay_complete:
@@ -117,4 +118,12 @@ class MainMenu(Scene):
         )
 
     def draw(self):
-        self.draw_box_centered((160, 120), (80, 60))
+        self.draw_box_centered((160, 120), (90, 60))
+
+        if not self.delay_complete:
+            return
+
+        self.game.screen.blit(
+            self.text_new_game,
+            (140, 120),
+        )

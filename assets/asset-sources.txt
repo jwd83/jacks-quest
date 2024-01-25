@@ -1,4 +1,6 @@
-click.wav: generated in jsfxr
-dragon-title-180p.png: generated in stable diffusion + photoshop
-dragon-title-360p.png: generated in stable diffusion + photoshop
-jacks-quest-title-screen: mspaint + photoshop
+click.wav: generated in jsfxr by Jared De Blander
+dragon-title-180p.png: generated in stable diffusion + photoshop by Jared De Blander
+dragon-title-360p.png: generated in stable diffusion + photoshop by Jared De Blander
+jacks-quest-title-screen: mspaint + photoshop by Jared De Blander
+hand.png: drawn in aseprite by Jared De Blander
+PressStart2P.ttf: Freely provided by codeman38
