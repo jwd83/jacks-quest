@@ -6,6 +6,7 @@ from scenes.empty import Empty
 from scenes.logo import Logo
 from scenes.title import Title
 from scenes.mainmenu import MainMenu
+from scenes.options import Options
 
 
 class Game:
@@ -79,7 +80,8 @@ class Game:
 
         # check for escape key to quit
         if pygame.K_ESCAPE in self.just_pressed:
-            self.quit = True
+            self.scene_pop = True
+            # self.quit = True
 
     def load_asset(self, asset_path: str):
         return pygame.image.load("assets/" + asset_path).convert_alpha()
@@ -106,6 +108,7 @@ class Game:
             self.scene_pop = None
 
     def load_scene(self, scene: str):
+        print("load_scene: " + scene)
         if scene in self.scenes:
             # use an eval to return the scene based on the scene string
             return eval(scene + "(self)")

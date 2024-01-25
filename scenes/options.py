@@ -2,11 +2,12 @@ import pygame
 from scene import Scene
 
 
-class MainMenu(Scene):
+class Options(Scene):
     def __init__(self, game):
         super().__init__(game)
         self.box_delay = 0.18
         self.delay_complete = False
+        self.text_options = self.game.make_text("Options", "WHITE", 24)
         self.text_new_game = self.game.make_text("New Game", "WHITE", 8)
         self.text_continue = self.game.make_text("Continue", "GREY", 8)
         self.text_options = self.game.make_text("Options", "WHITE", 8)
@@ -16,39 +17,13 @@ class MainMenu(Scene):
         self.rows_y = [100, 116, 132]
 
     def update(self):
-        if self.delay_complete:
-            if pygame.K_RETURN in self.game.just_pressed:
-                print("selected row: ", self.selected_row)
-                # self.game.scene_pop = True
-                if self.selected_row == 2:
-                    self.game.scene_push = "Options"
-
-            if pygame.K_UP in self.game.just_pressed:
-                self.selected_row -= 1
-                self.game.play_sound("click.wav")
-
-            if pygame.K_DOWN in self.game.just_pressed:
-                self.selected_row += 1
-                self.game.play_sound("click.wav")
-
-            self.selected_row %= self.rows
-
-        else:
-            if self.elapsed() > self.box_delay:
-                self.game.play_sound("click.wav")
-                self.delay_complete = True
+        pass
 
     def draw(self):
-        self.draw_box_centered((160, 120), (90, 60))
+        self.draw_box_centered((160, 50), (90, 40))
 
-        if not self.delay_complete:
+        if self.elapsed() < self.box_delay:
             return
-
-        self.game.screen.blit(self.text_new_game, (135, self.rows_y[0]))
-        self.game.screen.blit(self.text_continue, (135, self.rows_y[1]))
-        self.game.screen.blit(self.text_options, (135, self.rows_y[2]))
-
-        self.game.screen.blit(self.img_hand, (120, self.rows_y[self.selected_row]))
 
     def draw_box(self, position: tuple, size: tuple):
         if self.elapsed() < self.box_delay:
