@@ -16,6 +16,8 @@ class Game:
         self.pressed = []
         self.just_pressed = []
         self.__sfx = {}
+        self.volume_music = 100
+        self.volume_effects = 100
 
         # initialize pygame
         pygame.init()
@@ -164,9 +166,12 @@ class Game:
 
         """
         surface_position = surface.get_rect()
-        surface_position.centerx = target.get_rect().centerx * position[0]
-        surface_position.centery = target.get_rect().centery * position[1]
+        surface_position.centerx = target.get_rect().centerx * position[0] * 2
+        surface_position.centery = target.get_rect().centery * position[1] * 2
         target.blit(surface, surface_position)
 
     def play_sound(self, sound):
+        # set the volume of the sound based on the settings
+        self.__sfx[sound].set_volume(self.volume_effects / 100)
+
         pygame.mixer.Sound.play(self.__sfx[sound])

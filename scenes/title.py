@@ -31,7 +31,7 @@ class Title(Scene):
         self.text_press_start.set_alpha(
             self.constrain(127 + math.sin(self.elapsed() * 2) * 128, 0, 255)
         )
-        self.game.blit_centered(self.text_press_start, self.screen, (1, 1.5))
+        self.game.blit_centered(self.text_press_start, self.screen, (0.5, 0.75))
 
         # wait to start the fade in from pure black
         if self.elapsed() > self.fade_delay:

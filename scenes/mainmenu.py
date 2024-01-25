@@ -51,5 +51,5 @@ class MainMenu(Scene):
         # only draw the cursor if we are the active scene
         if self.active:
             self.game.screen.blit(
-                self.img_cursor, (120, self.rows_y[self.selected_row])
+                self.img_cursor, (125, self.rows_y[self.selected_row])
             )
