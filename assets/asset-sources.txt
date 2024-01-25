@@ -1,0 +1,4 @@
+click.wav: generated in jsfxr
+dragon-title-180p.png: generated in stable diffusion + photoshop
+dragon-title-360p.png: generated in stable diffusion + photoshop
+jacks-quest-title-screen: mspaint + photoshop

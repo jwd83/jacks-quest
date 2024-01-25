@@ -14,6 +14,12 @@ class Logo(Scene):
         self.timeout = 3.5
 
     def update(self):
+        if (
+            pygame.K_RETURN in self.game.just_pressed
+            or pygame.K_SPACE in self.game.just_pressed
+        ):
+            self.game.scene_replace = "Title"
+
         if self.elapsed() > self.timeout:
             self.game.scene_replace = "Title"
 

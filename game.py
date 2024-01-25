@@ -1,5 +1,6 @@
 import os
 import pygame
+import settings
 from scene import Scene
 from scenes.empty import Empty
 from scenes.logo import Logo
@@ -13,15 +14,21 @@ class Game:
         self.quit = False
         self.pressed = []
         self.just_pressed = []
+        self.__sfx = {}
 
         # initialize pygame
         pygame.init()
+        pygame.mixer.init()
+
+        # load our sound effects
+        for sound in settings.SFX_LIST:
+            self.__sfx[sound] = pygame.mixer.Sound("assets/" + sound)
 
         # create a window
         self.screen = pygame.display.set_mode(
-            (320, 180), pygame.FULLSCREEN | pygame.SCALED
+            settings.RESOLUTION, pygame.FULLSCREEN | pygame.SCALED
         )
-        pygame.display.set_caption("Jack's Quest")
+        pygame.display.set_caption(settings.TITLE)
 
         # create a pygame clock to limit the game to 60 fps
         self.clock = pygame.time.Clock()
@@ -29,8 +36,8 @@ class Game:
         # create a stack for scenes to be updated and drawn
         # and add the title scene to the stack
         self.scene = []  # type: list[Scene]
-        self.scenes = ["Logo", "Title", "MainMenu"]
-        self.scene.append(Logo(self))
+        self.scenes = settings.SCENE_LIST
+        self.scene.append(self.load_scene(settings.SCENE_START))
 
         # create variables to handle scene changes
         self.scene_replace = None
@@ -56,7 +63,7 @@ class Game:
             self.change_scenes()
 
             # limit the game to 60 fps
-            self.clock.tick(60)
+            self.clock.tick(settings.FPS)
 
     def get_events_and_input(self):
         # get input
@@ -124,28 +131,32 @@ class Game:
     def make_text(self, text, color, fontSize, font=None):
         return pygame.font.Font(font, fontSize).render(text, 1, color)
 
-    def place_text_absolute(self, text, target, position):
-        target.blit(text, position)
+    def make_transparent_surface(self, size):
+        return pygame.Surface(size, pygame.SRCALPHA, 32).convert_alpha()
 
-    def place_text_centered(self, text, target, position):
+    def blit_centered(self, surface, target, position=(0.5, 0.5)):
         """
-        This function places a given text at a specified position on the target surface.
+        This function places a given surface at a specified position on the target surface.
 
         Parameters:
-        text (pygame.Surface): The text to be placed. This is a pygame Surface object, which can be
+        Surface (pygame.Surface): The surface to be placed. This is a pygame Surface object, which can be
         created using pygame.font.Font.render() method.
 
-        target (pygame.Surface): The target surface on which the text is to be placed. This could be
+        target (pygame.Surface): The target surface on which the surface is to be placed. This could be
         the game screen or any other surface.
 
-        position (tuple): A tuple of two values between 0 and 2, representing the relative position
-        on the target surface where the text should be placed. The values correspond to the horizontal
-        and vertical position respectively. For example, a position of (1, 1) will place the text dead
+        position (tuple): A tuple of two values between 0 and 1, representing the relative position
+        on the target surface where the surface should be placed. The values correspond to the horizontal
+        and vertical position respectively. For example, a position of (0.5, 0.5) will place the text dead
         center on the target surface.
 
 
         """
-        text_position = text.get_rect()
-        text_position.centerx = target.get_rect().centerx * position[0]
-        text_position.centery = target.get_rect().centery * position[1]
-        target.blit(text, text_position)
+        surface_position = surface.get_rect()
+        surface_position.centerx = target.get_rect().centerx * position[0]
+        surface_position.centery = target.get_rect().centery * position[1]
+        target.blit(surface, surface_position)
+
+    def play_sound(self, sound):
+        print("Playing sound: " + sound)
+        pygame.mixer.Sound.play(self.__sfx[sound])
