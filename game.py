@@ -50,6 +50,11 @@ class Game:
             # handle events and input
             self.get_events_and_input()
 
+            # set all scenes to inactive except the top scene in the stack
+            for scene in self.scene:
+                scene.active = False
+            self.scene[-1].active = True
+
             # process update for the top scene in the stack
             self.scene[-1].update()
 

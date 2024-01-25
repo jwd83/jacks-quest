@@ -5,6 +5,7 @@ import math
 class Scene:
     def __init__(self, game):
         self.game = game
+        self.active = True
         self.screen = game.screen
         self.start = time.time()
 

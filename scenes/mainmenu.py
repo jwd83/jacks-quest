@@ -48,7 +48,8 @@ class MainMenu(Scene):
         self.game.screen.blit(self.text_continue, (135, self.rows_y[1]))
         self.game.screen.blit(self.text_options, (135, self.rows_y[2]))
 
-        self.game.screen.blit(self.img_hand, (120, self.rows_y[self.selected_row]))
+        if self.active:
+            self.game.screen.blit(self.img_hand, (120, self.rows_y[self.selected_row]))
 
     def draw_box(self, position: tuple, size: tuple):
         if self.elapsed() < self.box_delay:
