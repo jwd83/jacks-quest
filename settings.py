@@ -4,7 +4,7 @@
 RESOLUTION = (320, 180)
 FPS = 60
 TITLE = "Jack's Quest"
-SCENE_LIST = ["Logo", "Title", "MainMenu", "Options"]
+SCENE_LIST = ["Logo", "Title", "MainMenu", "Options", "Credits"]
 SCENE_START = "Logo"
 SFX_LIST = ["click.wav"]
 FONT = "PressStart2P.ttf"

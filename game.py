@@ -7,6 +7,7 @@ from scenes.logo import Logo
 from scenes.title import Title
 from scenes.mainmenu import MainMenu
 from scenes.options import Options
+from scenes.credits import Credits
 
 
 class Game:

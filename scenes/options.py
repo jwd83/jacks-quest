@@ -23,7 +23,7 @@ class Options(Scene):
                 print("selected row: ", self.selected_row)
                 # self.game.scene_pop = True
                 if self.selected_row == 2:
-                    self.game.scene_push = "MainMenu"
+                    self.game.scene_push = "Credits"
 
             if pygame.K_UP in self.game.just_pressed:
                 self.selected_row -= 1
