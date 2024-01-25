@@ -25,6 +25,7 @@ class Credits(Scene):
             "Adobe Photoshop",
             "Aseprite",
             "Audacity",
+            "codeman38",
             "jsfxr",
             "Pygame",
             "Stable Diffusion",
