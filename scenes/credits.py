@@ -5,7 +5,7 @@ from scene import Scene
 class Credits(Scene):
     def __init__(self, game):
         super().__init__(game)
-        self.text_top = 200
+        self.text_top = 400
         self.credits = [
             "Jack's Quest",
             "",
@@ -47,5 +47,5 @@ class Credits(Scene):
         self.text_top -= 1
         for i, text in enumerate(self.text_credits):
             self.game.screen.blit(
-                text, (160 - text.get_width() / 2, self.text_top + i * 16)
+                text, (160 - text.get_width() / 2, round(self.text_top / 2) + i * 16)
             )
