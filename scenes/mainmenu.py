@@ -20,6 +20,8 @@ class MainMenu(Scene):
             if pygame.K_RETURN in self.game.just_pressed:
                 print("selected row: ", self.selected_row)
                 # self.game.scene_pop = True
+                if self.selected_row == 0:
+                    self.game.scene_replace = "Level"
                 if self.selected_row == 2:
                     self.game.scene_push = "Options"
 

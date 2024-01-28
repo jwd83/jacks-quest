@@ -11,3 +11,6 @@ dragon-title-360p.png: generated in stable diffusion and photoshop by Jared De B
 jacks-quest-title-screen: stable diffusion, mspaint and photoshop by Jared De Blander
 hand.png: drawn in aseprite by Jared De Blander
 hand-16x8.png: drawn in aseprite by Jared De Blander
+town1.png: stable diffusion by Jared De Blander
+town2.png: stable diffusion by Jared De Blander
+town3.png: stable diffusion by Jared De Blander

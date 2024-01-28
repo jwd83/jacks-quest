@@ -8,6 +8,7 @@ from scenes.title import Title
 from scenes.mainmenu import MainMenu
 from scenes.options import Options
 from scenes.credits import Credits
+from scenes.level import Level
 
 
 class Game:
@@ -65,11 +66,11 @@ class Game:
             for scene in self.scene:
                 scene.draw()
 
-            # update the display
-            pygame.display.flip()
-
             # process scene change requests (if any)
             self.change_scenes()
+
+            # update the display
+            pygame.display.flip()
 
             # limit the game to 60 fps
             self.clock.tick(settings.FPS)
