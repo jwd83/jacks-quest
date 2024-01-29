@@ -12,7 +12,7 @@ class Level(Scene):
         self.obstacles_sprites = pygame.sprite.Group()
 
         # load town1.png
-        self.img_background = self.game.load_asset("town3.png")
+        self.img_background = self.game.load_asset("town4.png")
 
     def update(self):
         if self.game.pressed[pygame.K_LEFT]:
